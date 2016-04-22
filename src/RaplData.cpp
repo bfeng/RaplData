@@ -32,7 +32,10 @@ void RNET_POWER::RaplData::Init()
     fff = fopen(TYP_PTH, "r");
     if(fff != NULL)
     {
-        fscanf(fff, "%d", &type);
+        if(fscanf(fff, "%d", &type) > 0)
+        {
+            cout << "Found type=" << type << endl;
+        }
         fclose(fff);
     }
     else
@@ -42,8 +45,10 @@ void RNET_POWER::RaplData::Init()
     fff = fopen(filename, "r");
     if(fff != NULL)
     {
-        fscanf(fff, "event=%x", &config);
-        cout << "Found config=" << config << endl;
+        if(fscanf(fff, "event=%x", &config) > 0)
+        {
+            cout << "Found config=" << config << endl;
+        }
         fclose(fff);
     }
     else
@@ -57,8 +62,10 @@ void RNET_POWER::RaplData::Init()
     fff = fopen(filename, "r");
     if(fff != NULL)
     {
-        fscanf(fff, "%lf", &this->m_Scale);
-        cout << "Found scale=" << this->m_Scale << endl;
+        if(fscanf(fff, "%lf", &this->m_Scale) > 0)
+        {
+            cout << "Found scale=" << this->m_Scale << endl;
+        }
         fclose(fff);
     }
     else
@@ -68,8 +75,10 @@ void RNET_POWER::RaplData::Init()
     fff = fopen(filename, "r");
     if(fff != NULL)
     {
-        fscanf(fff, "%s", this->m_Units);
-        cout << "Found units=" << this->m_Units << endl;
+        if(fscanf(fff, "%s", this->m_Units) > 0)
+        {
+            cout << "Found units=" << this->m_Units << endl;
+        }
         fclose(fff);
     }
     else
@@ -106,8 +115,10 @@ void RNET_POWER::RaplData::Read()
     long long value;
     if(this->perf_fd > 0)
     {
-        read(this->perf_fd, &value, 8);
-        this->m_Value = value;
+        if(read(this->perf_fd, &value, 8) > 0)
+        {
+            this->m_Value = value;
+        }
         close(this->perf_fd);
     }
 }
