@@ -9,17 +9,17 @@ AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
 AC_PROG_CXX
-#AC_PROG_CC
+AC_PROG_CC
 
 # Checks for libraries.
 
 # Checks for header files.
-AC_CHECK_HEADERS([stdlib.h string.h unistd.h])
+AC_CHECK_HEADERS([stdlib.h string.h unistd.h sys/syscall.h linux/perf_event.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 
 # Checks for library functions.
 AC_FUNC_MALLOC
-AC_CHECK_FUNCS([strerror])
+AC_CHECK_FUNCS([strerror syscall])
 
 AC_OUTPUT(Makefile src/Makefile doc/Makefile examples/Makefile man/Makefile scripts/Makefile)
