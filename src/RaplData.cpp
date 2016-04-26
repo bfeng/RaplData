@@ -4,7 +4,7 @@ using std::cout;
 using std::cerr;
 using std::endl;
 
-RNET_POWER::RaplData::RaplData(const char * DomainName)
+POWERAPI::RaplData::RaplData(const char * DomainName)
 {
     this->m_DomainName = (char *) malloc(64 * sizeof(char));
     this->m_Units = (char *) malloc(16 * sizeof(char));
@@ -15,14 +15,14 @@ RNET_POWER::RaplData::RaplData(const char * DomainName)
     this->perf_fd = 0;
 }
 
-RNET_POWER::RaplData::~RaplData()
+POWERAPI::RaplData::~RaplData()
 {
     free(this->m_DomainName);
     free(this->m_Units);
     free(this->attr_ptr);
 }
 
-void RNET_POWER::RaplData::Init()
+void POWERAPI::RaplData::Init()
 {
     FILE *fff;
     char filename[128];
@@ -88,7 +88,7 @@ void RNET_POWER::RaplData::Init()
     this->attr_ptr->config = config;
 }
 
-int RNET_POWER::RaplData::Open()
+int POWERAPI::RaplData::Open()
 {
     this->perf_fd = 0;
     if(this->attr_ptr == NULL)
@@ -110,7 +110,7 @@ int RNET_POWER::RaplData::Open()
     return 0;
 }
 
-void RNET_POWER::RaplData::Read()
+void POWERAPI::RaplData::Read()
 {
     long long value;
     if(this->perf_fd > 0)
@@ -123,7 +123,7 @@ void RNET_POWER::RaplData::Read()
     }
 }
 
-void RNET_POWER::RaplData::Println()
+void POWERAPI::RaplData::Println()
 {
     cout << this->m_DomainName << ": Energy consumed: " << (double)this->m_Value * this->m_Scale << " " << this->m_Units << endl;
 }

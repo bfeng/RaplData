@@ -1,7 +1,7 @@
 #include <iostream>
 #include"RaplData.h"
 
-using namespace RNET_POWER;
+using namespace POWERAPI;
 
 int main()
 {
